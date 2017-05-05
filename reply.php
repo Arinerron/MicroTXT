@@ -7,6 +7,9 @@ MIT License
 */
 include('php/settings.php');
 include('php/csrf.php');
+include('php/Parsedown.php');
+
+$Parsedown = new Parsedown();
 
 function tripcode($tripcode)
 {
@@ -146,7 +149,7 @@ $child->setAttribute( 'onClick', 'javascript: clickItem(\'' . $replyTo . '\');')
 
 $parent->appendChild( $child);
 
-$child = $doc->createElement('div', $text);
+$child = $doc->createElement('div', $Parsedown->text($text));
 $child->setAttribute( 'class', 'post');
 
 $parent->appendChild( $child);
